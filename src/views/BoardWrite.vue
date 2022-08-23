@@ -6,13 +6,13 @@
     </div>
     
     <div class="board-contents">
-        <input type="text" v-model="title" palceholder="제목을 입렵해주세요" name="" id="">
+        <input type="text" palceholder="제목을 입렵해주세요" name="" id="" v-model="title">
     </div>
-
     <div class="board-contents">
       <textarea id="" cols="30" rows="10" v-model="contents"  style="resize: none;"></textarea>
     </div>
 
+    
 </div>
   
 </template>

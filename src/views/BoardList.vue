@@ -1,7 +1,7 @@
 <template>
   <div class="board-list">
     <div class="common-buttons">
-        <button type="button" @:click="fnPost">새로운 Post를 등록해보세요</button>
+        <button type="button" @click="fnWrite">등록</button>
     </div>
     <ul v-for="(row,idx) in list" v-bind:key="idx">
         <li>    

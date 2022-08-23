@@ -1,6 +1,6 @@
 <template>
   <div>
-    여백의 미!
+    오늘의 일기 
   </div>
 </template>
 
