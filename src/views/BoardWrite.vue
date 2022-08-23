@@ -1,8 +1,8 @@
 <template>
   <div class="board-detail">    
     <div class="button">
-        <button @:click="fnSave">저장</button>
-        <button @:click="fnList">목록</button>
+        <button @click="fnSave">저장</button>
+        <button @click="fnList">목록</button>
     </div>
     
     <div class="board-contents">
@@ -50,7 +50,7 @@ export default {
       },
 
       fnList(){
-        delete this.requestBody.idx.$axios
+        delete this.requestBody.idx
         this.$router.push({
           path:'./list',
           query:this.requestBody
@@ -105,5 +105,12 @@ export default {
 </script>
 
 <style>
+.board-contents{
+  text-align: center;
+}
+
+.button :first-child{
+    margin: 0 0.5rem;
+}
 
 </style>

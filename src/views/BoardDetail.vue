@@ -1,8 +1,7 @@
 <template>
   <div class="borad-detail">
     <div class="nav-top">
-        <select name="yearBox" id="yearBox"></select>
-        <i class="fa-solid fa-image"></i>
+       
         <button @click="fnList">목록</button>
         <button @click="fnDelete">삭제</button>
         <button @click="fnUpdate">수정</button>
