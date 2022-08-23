@@ -5,19 +5,20 @@
         <button @click="fnList">목록</button>
     </div>
     
-    <div class="board-contents">
+    <div class="board-contents" @keyup.enter="fnSave">
         <input type="text" palceholder="제목을 입렵해주세요" name="" id="" v-model="title">
     </div>
     <div class="board-contents">
       <textarea id="" cols="30" rows="10" v-model="contents"  style="resize: none;"></textarea>
     </div>
-
-    
 </div>
   
 </template>
 
 <script>
+
+const date=new Date();
+const hour=date.getHours();
 export default {
     data(){
         return{
@@ -27,6 +28,7 @@ export default {
             contents:'',
             condition:'',
             date:'',
+            weather:''
     }
     },
     mounted(){
@@ -34,16 +36,21 @@ export default {
     },
 
     methods:{
+        clock(){
+            return hour>12 ? "PM":"AM";
+        },
       fnGetView() {
         this.$axios.get(this.$serverUrl+'/board/'+this.idx,{
           parm:this.requestBody
         }).then((res)=>{
         this.title = res.data.title
-        this.contents = res.data.contents
+        this.contents = res.data.context
         this.condition = res.data.condition
-        this.date = res.data.date
+        this.date = res.data.dat
+        this.weather=res.data.weather
+  
         }).catch((err)=>{
-          if(err.message.indexOf('Network Error') > -1) {
+          if(err.message.indexOf('Network Error') > -1) {  // 
             alert('네트워크가 원활하지않습니다.\n 잠시 후 다시 시도해주세요.')
           }
         })
@@ -73,7 +80,6 @@ export default {
           "contents":this.contents,
           "date":this.date
             }
-
          if (this.idx === undefined) {
         //INSERT
         this.$axios.post(apiUrl, this.form)
@@ -89,7 +95,7 @@ export default {
         //UPDATE
         this.$axios.patch(apiUrl, this.form)
         .then((res) => {
-          alert('글이 저장되었습니다.')
+          alert('글이 수정되었습니다.')
           this.fnView(res.data.idx)
         }).catch((err) => {
           if (err.message.indexOf('Network Error') > -1) {
