@@ -1,7 +1,8 @@
 <template>
-  <div>
-    여백의 미!
-  </div>
+  <footer>
+        <hr/>
+    여기는 footer 자리입니다.
+  </footer>
 </template>
 
 <script>
