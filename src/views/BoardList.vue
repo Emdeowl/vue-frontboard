@@ -6,9 +6,9 @@
     <ul v-for="(row,idx) in list" v-bind:key="idx">
         <li>    
             <span>{{row.idx}}</span>
-            <a @:click="fnView(`${row.idx}`)">{{row.title}}</a>
-            <span>{{row.date}}</span>  
-            <span>{{row.time}}</span>  
+            <a @click="fnView(`${row.idx}`)">{{row.title}}</a>
+            <span>{{row.dat}}</span>  
+            <span>{{row.tim}}</span>  
             <span>{{row.weather}}</span>  
             <span>{{row.condition}}</span>  
 
@@ -30,7 +30,7 @@ export default {
     },
     methods:{
         fnGetList(){
-             this.$axios.get(this.$serverUrl + "/board/list", {
+        this.$axios.get(this.$serverUrl + "/board/list", {
         params: this.requestBody,
         headers: {}
       }).then((res) => {      
@@ -43,11 +43,18 @@ export default {
         }
       })
         },
+
         fnView(idx){
           this.requestBody.idx=idx;
           this.$router.push({    // https://sunny921.github.io/posts/vuejs-router-03/  router.push
             path:'./detail',
-            query:this.requestBody
+            query:this.requestBody  //router의 데이터를 query를 통해 전달한다. 
+          })
+        },
+
+        fnWrite(){
+          this.$router.push({
+            path:'./write'
           })
         }
     }
