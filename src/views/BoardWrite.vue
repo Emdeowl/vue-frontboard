@@ -1,60 +1,73 @@
 <template>
-  <div class="board-detail">    
-    <div class="button">
-        <button @click="fnSave">저장</button>
+  <div class="board-detail">  
+      <div class="upper-nav">  
+        <span>{{ dat }}</span>
+        <span>{{tim}}</span>&nbsp;
+        <span>
+            <select v-model="weather">
+              <option value="sunny">sunny</option>
+              <option value="snowy">snowy</option>
+              <option value="rainy">rainy</option>
+              <option value="cloudy">cloudy</option>
+              <option value="hail">hail</option>
+            </select>
+        </span>&nbsp;
+        <button @click="fnSave">저장</button>&nbsp;
         <button @click="fnList">목록</button>
-    </div>
+      </div>
     
     <div class="board-contents" @keyup.enter="fnSave">
-        <input type="text" palceholder="제목을 입렵해주세요" name="" id="" v-model="title">
+        <input type="text" palceholder="제목을 입렵해주세요"  v-model="title">
     </div>
     <div class="board-contents">
-      <textarea id="" cols="30" rows="10" v-model="contents"  style="resize: none;"></textarea>
+      <textarea  cols="30" rows="10" v-model="context"  style="resize: none;"></textarea>
     </div>
 </div>
   
 </template>
 
 <script>
-
 const date=new Date();
+const year = date.getFullYear();
 const hour=date.getHours();
+const month = date.getMonth() + 1;
+const day = date.getDate();
+
+
 export default {
     data(){
         return{
             requestBody:this.$route.query,
             idx:this.$route.query.idx,
             title:'',
-            contents:'',
+            context:'',
             condition:'',
-            date:'',
+            dat: `${year}-${month}-${day}`,
+            tim: hour > 12 ? 'PM' : 'AM',
             weather:''
-    }
+          }
     },
     mounted(){
       this.fnGetView();
     },
 
     methods:{
-        clock(){
-            return hour>12 ? "PM":"AM";
-        },
       fnGetView() {
         this.$axios.get(this.$serverUrl+'/board/'+this.idx,{
           parm:this.requestBody
         }).then((res)=>{
         this.title = res.data.title
-        this.contents = res.data.context
+        this.context = res.data.context
         this.condition = res.data.condition
-        this.date = res.data.dat
+        this.dat = res.data.dat
+        this.tim = res.data.tim;
         this.weather=res.data.weather
   
         }).catch((err)=>{
-          if(err.message.indexOf('Network Error') > -1) {  // 
-            alert('네트워크가 원활하지않습니다.\n 잠시 후 다시 시도해주세요.')
-          }
-        })
-      },
+           console.log(err);
+          } )
+        }
+      ,
 
       fnList(){
         delete this.requestBody.idx
@@ -63,6 +76,13 @@ export default {
           query:this.requestBody
         })
       },
+      fnView(idx) { //상세보기
+      this.requestBody.idx = idx;
+      this.$router.push({
+        path: "./detail",
+        query: this.requestBody,
+      });
+    },
 
       fnUpdate(){
         this.$router.push({
@@ -77,8 +97,10 @@ export default {
          this.form = {
           "idx":this.idx,
           "title":this.title,
-          "contents":this.contents,
-          "date":this.date
+          "context":this.context,
+          "dat":this.dat,
+          "tim":this.tim,
+          "weather": this.weather,
             }
          if (this.idx === undefined) {
         //INSERT
@@ -107,7 +129,7 @@ export default {
     }
 
     }
- }
+}
 </script>
 
 <style>
