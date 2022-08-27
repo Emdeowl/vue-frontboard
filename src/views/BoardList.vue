@@ -5,13 +5,12 @@
     </div>
     <ul v-for="(row,idx) in list" v-bind:key="idx">
         <li>    
-            <span>{{row.idx}}</span>
-            <a @click="fnView(`${row.idx}`)">{{row.title}}</a>
+            <span>{{row.idx}}</span>&nbsp;
+            <a @click="fnView(`${row.idx}`)">{{row.title}}</a>&nbsp;|
             <span>{{row.dat}}</span>  
-            <span>{{row.tim}}</span>  
-            <span>{{row.weather}}</span>  
+            <span>{{row.tim}}</span>  &nbsp;
+            <span>{{row.weather}}</span>  &nbsp;
             <span>{{row.condition}}</span>  
-
         </li>
     </ul>
   </div>

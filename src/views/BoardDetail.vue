@@ -1,7 +1,6 @@
 <template>
   <div class="borad-detail">
     <div class="nav-top">
-       
         <button @click="fnList">목록</button>
         <button @click="fnDelete">삭제</button>
         <button @click="fnUpdate">수정</button>
@@ -11,10 +10,10 @@
         <h3>{{title}}</h3>
           <div>
             <strong> {{condition}} </strong>
-            <span>{{date}}</span> 
+            <span>{{dat}}</span> 
             <span>{{weather}}</span>
             </div>
-         <span>{{contents}}</span>
+         <span>{{context}}</span>
       
     </div>
 
@@ -32,10 +31,10 @@ export default {
             requestBody:this.$route.query,
             idx:this.$route.query.idx,
             title:'',
-            contents:'',
+            context:'',
             condition:'',
             weather:'',
-            date:'',
+            dat:'',
     }
     },
     mounted(){
@@ -48,9 +47,9 @@ export default {
           parm:this.requestBody
         }).then((res)=>{
         this.title = res.data.title
-        this.contents = res.data.context
+        this.context = res.data.context
         this.condition = res.data.condition
-        this.date = res.data.dat
+        this.dat = res.data.dat
         this.weather=res.data.weather
         }).catch((err)=>{
           if(err.message.indexOf('Network Error') > -1) {
