@@ -3,6 +3,7 @@ import OilHome from '@/views/OilHome.vue'
 import BoardList from '@/views/BoardList.vue'
 import BoardDetail from '@/views/BoardDetail'
 import BoardWrite from '@/views/BoardWrite.vue'
+import Login from '@/views/Login.vue'
 
 const routes=[
     {
@@ -29,6 +30,11 @@ const routes=[
         path:'/board/write',
         name:'BoardWrite',
         component:BoardWrite
+    },
+    {
+        path:'/login',
+        name:'Login',
+        component:Login
     }
 ]
 
