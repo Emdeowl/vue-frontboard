@@ -43,7 +43,7 @@ export default {
             alert('비밀번호를 입력해주세요.') 
             return
         }
-         alert('로그인이 되었습니다.')
+        //  alert('로그인이 되었습니다.')
        
 
        try {
