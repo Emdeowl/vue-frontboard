@@ -1,6 +1,6 @@
-const getUserInfo = (userId,userPw)=>{
+const getUserInfo = (userId,userPw) => {
     const reqData ={
-        'user_id': userId,
+        'user_id': userId,   //login.vue에 data임
         'user_pw': userPw
     }
 

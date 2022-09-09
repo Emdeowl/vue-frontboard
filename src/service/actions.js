@@ -2,7 +2,7 @@ import {USER_ID, IS_AUTH, ERROR_STATE} from './mutation_types'
 import loginAPI from '../service/loginAPI'
 
 let setUserId = ({commit}, data) => {
-  commit(USER_ID, data)
+  commit(USER_ID, data)  // commit으로 USER_ID 에 data를 대입
 }
 
 let setErrorState = ({commit}, data) => {
@@ -16,7 +16,7 @@ let setIsAuth = ({commit}, data) => {
 
 let processResponse = (store, loginResponse) => {
   switch (loginResponse) {
-    case 'notFound':
+    case 'notFound':    // 로그인 실패시
       setErrorState(store, 'Wrong ID or Password')
       setIsAuth(store, false)
       break
