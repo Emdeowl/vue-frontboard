@@ -3,7 +3,7 @@ import OilHome from '@/views/OilHome.vue'
 import BoardList from '@/views/BoardList.vue'
 import BoardDetail from '@/views/BoardDetail'
 import BoardWrite from '@/views/BoardWrite.vue'
-import Login from '@/views/Oillogin.vue'
+import Login from '@/views/OilLogin.vue'
 
 const routes=[
     {
