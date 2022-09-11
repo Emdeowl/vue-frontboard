@@ -1,6 +1,6 @@
 const getUserInfo = (userId,userPw) => {
     const reqData ={
-        'user_id': userId,   //login.vue에 data임
+        'user_id': userId,
         'user_pw': userPw
     }
 
@@ -14,7 +14,7 @@ const getUserInfo = (userId,userPw) => {
 }
 
 export default{
-    async doLogin(userId,userPw){
+    async  doLogin(userId,userPw){
         try{
             const getUserInfoPromise = getUserInfo(userId,userPw)
             const [userInfoResponse] = await Promise.all([getUserInfoPromise])
@@ -26,7 +26,7 @@ export default{
                 return userInfoResponse
             } 
         } catch(err)
-        {
+        {   
             console.error(err);
         }
     }
