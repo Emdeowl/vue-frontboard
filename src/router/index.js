@@ -4,6 +4,7 @@ import BoardList from '@/views/BoardList.vue'
 import BoardDetail from '@/views/BoardDetail'
 import BoardWrite from '@/views/BoardWrite.vue'
 import Login from '@/views/OilLogin.vue'
+import SignUp from '@/views/OilSignUp.vue'
 
 const routes=[
     {
@@ -35,6 +36,11 @@ const routes=[
         path:'/login',
         name:'Login',
         component:Login
+    },
+    {
+        path:'/Signup',
+        name:'SignUp',
+        component:SignUp
     }
 ]
 
